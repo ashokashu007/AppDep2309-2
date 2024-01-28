@@ -5,6 +5,7 @@ const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
+const path = require("node:path");//path imported
 dotenv.config();
 
 const storage = multer.diskStorage({
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 app.use("/uploads", express.static("uploads"));
+app.use(express.static(path.join(__dirname,"./client/build")));//path is inbuild module
 
 let connectToMDB = async () => {
   try {
